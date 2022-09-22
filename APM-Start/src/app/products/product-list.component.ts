@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { IProduct } from "./IProduct";
 
 @Component({
     selector: "pm-products",
@@ -6,12 +7,21 @@ import { Component } from "@angular/core";
 })
 
 export class ProductListComponent {
-    pageTile: string = "Product List!";
-    listFilter: string = "cart";
-    imageWidth: number = 50;
+    pageTile: string    = "Product List!";
+    imageWidth: number  = 50;
     imageHeight: number = 2;
-    showImage: boolean = false;
-    products: any[] = [
+    showImage: boolean  = false;
+
+    private _listFilter: string = '';
+    get listFilter(): string {
+      return this._listFilter;
+    }
+    set listFilter(value: string) {
+        this._listFilter = value;
+        console.log('In setter: ', value);
+    }
+
+    products: IProduct[] = [
         {
           "productId": 1,
           "productName": "Leaf Rake",
@@ -63,6 +73,10 @@ export class ProductListComponent {
           "imageUrl": "assets/images/xbox-controller.png"
         }
       ];
+
+      ngOnInit(): void {
+        this.listFilter = 'cart';
+      };
 
       toggleImage(): void {
             this.showImage = !this.showImage;
