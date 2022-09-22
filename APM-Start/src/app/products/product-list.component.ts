@@ -78,11 +78,18 @@ export class ProductListComponent {
       }
     ];
 
-      ngOnInit(): void {
-        this.listFilter = 'cart';
+    performFilter(filterBy: string): IProduct[] {
+      filterBy = filterBy.toLocaleLowerCase();
+      
+      return this.products.filter((product: IProduct) =>
+        product.productName.toLocaleLowerCase().includes(filterBy));
       };
 
-      toggleImage(): void {
-            this.showImage = !this.showImage;
-      };
+    ngOnInit(): void {
+      this.listFilter = 'cart';
+    };
+
+    toggleImage(): void {
+          this.showImage = !this.showImage;
+    };
 }
