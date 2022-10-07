@@ -3,8 +3,7 @@ import { Subscription } from "rxjs";
 import { IProduct } from "./IProduct";
 import { ProductService } from "./product.service";
 
-@Component({
-    selector: "pm-products",
+@Component({    
     templateUrl: "./product-list.component.html"
 })
 
